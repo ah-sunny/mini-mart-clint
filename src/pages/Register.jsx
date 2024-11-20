@@ -1,15 +1,18 @@
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 import GoogleLogIn from "../component/GoogleLogIn";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
 
-  // const { createUser } = useAuth()
-  // const navigate = useNavigate()
+  const { createUser } = useAuth()
+  const navigate = useNavigate()
   const [showPass, setShowPass] = useState(false)
 
 
@@ -17,7 +20,7 @@ const Register = () => {
     register,
     handleSubmit,
     watch,
-
+    reset,
     formState: { errors },
   } = useForm()
 
@@ -35,16 +38,38 @@ const Register = () => {
     }
     console.log(userDetails)
 
-    //   createUser(data.email, data.password)
-    //   .then((res)=>{
-    //     console.log(res.user)
-    //     toast.success("created")
-    //     // navigate("/")
-    //   })
-    //   .catch(error => {
-    //     toast.error(`${error.message}`)
-    //     // console.error(error)
-    // })
+      createUser(data.email, data.password)
+      .then((res)=>{
+        console.log(res.user)
+        //send to server
+        axios.post("http://localhost:4000/users",userDetails)
+        .then(res => {
+          if (res.data.insertedId) {
+              console.log('user added to the database')
+              reset();
+              Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'User created successfully.',
+                  showConfirmButton: false,
+                  timer: 1500
+              });
+
+              navigate("/");
+          }
+      })
+      .catch(error => {
+          // console.error(error)
+          toast.error(`${error.message}`)
+      })
+        
+        // toast.success("created")
+        // navigate("/")
+      })
+      .catch(error => {
+        toast.error(`${error.message}`)
+        // console.error(error)
+    })
 
 
   }

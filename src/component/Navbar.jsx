@@ -1,6 +1,7 @@
 import { FaOpencart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import useAuth from "../hooks/useAuth";
 
 
