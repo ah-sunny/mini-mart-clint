@@ -73,7 +73,7 @@ const Login = () => {
                         <GoogleLogIn></GoogleLogIn>
                     </div>
                     <p className="text-sm" >Create new account
-                        <Link to='/Register' className="text-blue-900 " > Register</Link>
+                        <Link to='/register' className="text-blue-900 " > Register</Link>
                     </p>
                 </form>
       </div>

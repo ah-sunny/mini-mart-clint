@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom"
-import useAuth from "../hooks/useAuth"
+import { FaOpencart } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 
 export const Navbar = () => {
@@ -40,7 +41,7 @@ export const Navbar = () => {
                 <li><NavLink to="/AboutUs" >About Us</NavLink></li>
             </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Gadget Shop</a>
+        <a className="btn btn-ghost text-xl"><FaOpencart/> MiniMart</a>
     </div>
     <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -75,7 +76,7 @@ export const Navbar = () => {
                 :
                 <div>
                     <NavLink to='/Login' > <button className="btn btn-primary btn-outline " >Login</button> </NavLink>
-                    <NavLink to="/Register"> <button className="btn btn-primary " >Register</button> </NavLink>
+                    <NavLink to="/register"> <button className="btn btn-primary " >Register</button> </NavLink>
                 </div>
         }
 
