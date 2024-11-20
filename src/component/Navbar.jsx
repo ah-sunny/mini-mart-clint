@@ -1,17 +1,20 @@
 import { FaOpencart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 
 
 export const Navbar = () => {
-  const { user } = useAuth()
+  const { user,logOut } = useAuth()
 
   const handleSignOut = () => {
-    // logOut()
-    //     .then()
-    //     .catch(error => {
-    //         console.error(error)
-    //     })
+    logOut()
+        .then(()=>{
+           alert("user out done")
+        })
+        .catch(error => {
+            console.error(error)
+        })
     console.log("clicked")
 }
   return (
@@ -81,8 +84,8 @@ export const Navbar = () => {
         }
 
 
-
     </div>
+<ToastContainer></ToastContainer>
 </div>
   )
 }
