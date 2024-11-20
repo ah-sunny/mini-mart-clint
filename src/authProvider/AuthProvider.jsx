@@ -6,7 +6,7 @@ import { app } from "../firebase/firebase.config";
 export const AuthContext = createContext(null);
 const auth = getAuth(app)
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,25 +14,24 @@ const AuthProvider = ({children}) => {
 
   const createUser = (email, password) => {
     setLoading(true)
-    // return createUserWithEmailAndPassword(auth, email, password)
     return createUserWithEmailAndPassword(auth, email, password)
-}
-const LogInUser = (email, password) => {
+  }
+  const LogInUser = (email, password) => {
     setLoading(true)
     return signInWithEmailAndPassword(auth, email, password)
-}
-const GoogleLogin = () => {
+  }
+  const GoogleLogin = () => {
     setLoading(true)
     return signInWithPopup(auth, googleProvider)
-}
+  }
 
 
-const logOut = () => {
+  const logOut = () => {
     return signOut(auth);
-}
+  }
 
-useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, currentUser => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, currentUser => {
       // const userEmail = currentUser?.email || user?.email;
       // const loggedUser = { email: userEmail };
       setUser(currentUser);
@@ -42,7 +41,7 @@ useEffect(() => {
       //     axios.post("http://localhost:4000/jwt",{ email: currentUser?.email } )
       //     .then(res=>{
       //         if(res?.data?.token){
-                  
+
       //             localStorage.setItem("access-token", res?.data?.token)
       //             setLoading(false);
       //         }
@@ -53,21 +52,21 @@ useEffect(() => {
       // }
       setLoading(false);
 
-  });
-  return () => {
+    });
+    return () => {
       return unsubscribe();
+    }
+  }, [user])
+
+  const authInfo = {
+    user,
+    loading,
+    createUser,
+    LogInUser,
+    GoogleLogin,
+
+    logOut
   }
-}, [user])
-
-const authInfo = {
-  user,
-  loading,
-  createUser,
-  LogInUser,
-  GoogleLogin,
-
-  logOut
-}
   return (
     <AuthContext.Provider value={authInfo} >
       {children}
