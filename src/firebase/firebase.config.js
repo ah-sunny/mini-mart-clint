@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA9J8McVey_Eeyj-hXG-s9Gqwevz_OefT0",
-  authDomain: "mini-mart-4242.firebaseapp.com",
-  projectId: "mini-mart-4242",
-  storageBucket: "mini-mart-4242.firebasestorage.app",
-  messagingSenderId: "693950332412",
-  appId: "1:693950332412:web:7af27c425d93890c89c679"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
