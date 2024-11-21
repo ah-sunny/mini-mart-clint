@@ -34,7 +34,8 @@ const Register = () => {
       photoURL: data.photoURL,
       role: data?.role,
       status: data.role === "buyer" ? "approved " : "pending",
-      wishlist: []
+      wishlist: [],
+      cart: [],
     }
     console.log(userDetails)
 
