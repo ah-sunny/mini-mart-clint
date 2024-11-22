@@ -1,4 +1,6 @@
+import { BsCart4 } from "react-icons/bs";
 import { FaCartPlus, FaOpencart } from "react-icons/fa";
+import { GiSelfLove } from "react-icons/gi";
 import { GrOverview } from "react-icons/gr";
 import { SiHomeadvisor } from "react-icons/si";
 import { Link, NavLink } from "react-router-dom";
@@ -26,16 +28,14 @@ const Sidebar = () => {
                 userData.role === 'buyer' &&
                 <>
                     <li>
-                        <Link to="/dashboard/avaiable" className="flex justify-center items-center gap-2 border-2 rounded-md border-black p-1"
-
-                        >
-                            <FaOpencart />
-                            Available Product</Link>
+                        <Link to="/dashboard/wishlist" className="flex justify-center items-center gap-2 border-2 rounded-md border-black p-1" >
+                            <GiSelfLove />
+                            wishlist</Link>
                     </li>
                     <li>
-                        <Link to="/dashboard/wishlist" className="flex justify-center items-center gap-2 border-2 rounded-md border-black p-1" >
-                            <FaCartPlus />
-                            wishlist</Link>
+                        <Link to="/dashboard/cart" className="flex justify-center items-center gap-2 border-2 rounded-md border-black p-1" >
+                            <BsCart4 />
+                            cart</Link>
                     </li>
                 </>
             }

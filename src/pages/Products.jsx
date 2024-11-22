@@ -21,11 +21,11 @@ export const Products = () => {
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState(1)
 
-  console.log("search: ", search)
-  console.log("sort: ", sort)
-  console.log("brand: ", brand)
-  console.log("category: ", category)
-  console.log("product: ", products)
+  // console.log("search: ", search)
+  // console.log("sort: ", sort)
+  // console.log("brand: ", brand)
+  // console.log("category: ", category)
+  // console.log("product: ", products)
 
   const handleSearchBtn = (e) => {
     e.preventDefault()

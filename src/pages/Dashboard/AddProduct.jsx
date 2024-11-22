@@ -36,7 +36,7 @@ export const AddProduct = () => {
 
         //get token from localstorage
         const token = localStorage.getItem("access-token")
-        console.log("token0", token)
+        // console.log("token0", token)
 
         // image upload to imgbb and then get an url
         // const imageFile = { image: data.image[0] }

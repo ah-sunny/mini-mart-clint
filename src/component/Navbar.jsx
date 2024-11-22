@@ -1,4 +1,7 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FaOpencart } from "react-icons/fa";
+import { LiaCartPlusSolid } from "react-icons/lia";
 import { NavLink } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,6 +10,7 @@ import useAuth from "../hooks/useAuth";
 
 export const Navbar = () => {
     const { user, logOut } = useAuth()
+    const [cartNumber, setCartNumber] = useState(null)
 
     const handleSignOut = () => {
         logOut()
@@ -18,6 +22,20 @@ export const Navbar = () => {
             })
         console.log("clicked")
     }
+
+
+    useEffect(()=>{
+        const fetch = async () => {
+            axios.get(`http://localhost:4000/cart?email=${user?.email}`)
+              .then(res => {
+                // console.log(" receive",res.data)
+                setCartNumber(res.data.cartCount)
+      
+              })
+          }
+          fetch()
+    },[user])
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -61,22 +79,33 @@ export const Navbar = () => {
                 {
                     user ?
 
+                        <>
+                        <div className="indicator mr-4">
+                        <span className="indicator-item badge badge-sm px-1 badge-secondary">{cartNumber}+</span>
+                            <LiaCartPlusSolid className="size-6 mr-1.5" />
+                        </div>
+                        {/* <div>
+                            <LiaCartPlusSolid className="size-8 mr-4" />
+                        </div> */}
 
-
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className=" m-1">
-                                <div className="avatar">
-                                    <div className=" w-9 rounded-full ">
-                                        <img src={user?.photoURL ? user?.photoURL : '/public/rabbit.png'} />
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className=" m-1">
+                                    <div className="avatar">
+                                        <div className=" w-9 rounded-full ">
+                                            <img src={user?.photoURL ? user?.photoURL : '/public/rabbit.png'} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                                <li><NavLink to='/dashboard/overview' >Dashboard</NavLink></li>
-                                <li onClick={handleSignOut} className=" mt-1 btn btn-outline btn-sm " >Logout</li>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                    <li><NavLink to='/dashboard/overview' >Dashboard</NavLink></li>
+                                    <li onClick={handleSignOut} className=" mt-1 btn btn-outline btn-sm " >Logout</li>
 
-                            </ul>
-                        </div>
+                                </ul>
+                            </div>
+
+                        </>
+
+
                         :
                         <div>
                             <NavLink to='/Login' > <button className="btn btn-primary btn-outline " >Login</button> </NavLink>

@@ -10,6 +10,8 @@ import { Home } from "../pages/Home";
 import Login from "../pages/Login";
 // import { Products } from "../pages/Products";
 import UpdateProduct from "../component/product/UpdateProduct";
+import { Cart } from "../pages/Dashboard/Cart";
+import { Wishlist } from "../pages/Dashboard/Wishlist";
 import { Products } from "../pages/Products";
 import Register from "../pages/Register";
 
@@ -68,6 +70,14 @@ export const router = createBrowserRouter([
           path: "/dashboard/update-page/:id",
           element: <UpdateProduct></UpdateProduct>,
          
+        },
+        {
+          path: "/dashboard/wishlist",
+          element: <Wishlist></Wishlist>
+        },
+        {
+          path: "/dashboard/cart",
+          element: <Cart></Cart>
         }
         
       ]
