@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { MdDeleteForever } from "react-icons/md"
+import Swal from "sweetalert2"
 import Loading from "../../component/loading/Loading"
 import useAuth from "../../hooks/useAuth"
 
@@ -9,6 +10,7 @@ export const Cart = () => {
   const { user } = useAuth()
   const [cartList, setCartList] = useState([])
   const [loading, setLoading] = useState(false)
+  const [reFetchData, setReFetchData] = useState(false)
   const token = localStorage.getItem("access-token")
 
   useEffect(() => {
@@ -23,13 +25,48 @@ export const Cart = () => {
           // console.log(" receive",res.data)
           setCartList(res.data.cartList)
           setLoading(false)
+          setReFetchData(false)
 
         })
     }
     fetch()
-  }, [user, token])
+  }, [user, token, reFetchData])
 
   const totalPrice = cartList.reduce((total, item) => total + item.price, 0);
+
+  const handleDeleteItem = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+
+        await axios.patch(`http://localhost:4000/cart/remove?email=${user?.email}&productID=${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+          .then(res => {
+            setReFetchData(true)
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Product has been deleted.",
+                icon: "success"
+              });
+              // console.log("confirm",id)
+            }
+          })
+      }
+    });
+  }
+
+
   return (
     <div>
       <h1 className="text-2xl font-bold mx-auto text-center border-b-2 border-black border-dashed pb-4 mb-9" >My Cart List</h1>
@@ -83,7 +120,7 @@ export const Cart = () => {
                           <td>{item?.brand}</td>
                           <td className="text-red-500" >{item?.stock}</td>
                           <td className="text-red-500" >$ {item?.price}</td>
-                          <td className=" ">
+                          <td onClick={() => handleDeleteItem(item?._id)} className=" ">
                             <MdDeleteForever className="size-6  " />
                           </td>
                         </tr>
