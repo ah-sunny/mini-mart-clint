@@ -8,11 +8,13 @@ import { MyProduct } from "../pages/Dashboard/MyProduct";
 import { OverView } from "../pages/Dashboard/OverView";
 import { Home } from "../pages/Home";
 import Login from "../pages/Login";
+// import { Products } from "../pages/Products";
+import UpdateProduct from "../component/product/UpdateProduct";
 import { Products } from "../pages/Products";
 import Register from "../pages/Register";
 
 
-
+// const {user} = useAuth()
 
 
 export const router = createBrowserRouter([
@@ -62,6 +64,11 @@ export const router = createBrowserRouter([
           path: "/dashboard/my-product",
           element: <MyProduct></MyProduct>
         },
+        {
+          path: "/dashboard/update-page/:id",
+          element: <UpdateProduct></UpdateProduct>,
+         
+        }
         
       ]
     }
