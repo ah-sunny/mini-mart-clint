@@ -10,7 +10,9 @@ import useAuth from "../hooks/useAuth";
 
 export const Navbar = () => {
     const { user, logOut } = useAuth()
+    // const user = useUserData()
     const [cartNumber, setCartNumber] = useState(null)
+    const token = localStorage.getItem("access-token")
 
     const handleSignOut = () => {
         logOut()
@@ -26,15 +28,19 @@ export const Navbar = () => {
 
     useEffect(()=>{
         const fetch = async () => {
-            axios.get(`http://localhost:4000/cart?email=${user?.email}`)
+            axios.get(`http://localhost:4000/cart?email=${user?.email}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              })
               .then(res => {
-                // console.log(" receive",res.data)
+                console.log(" receive",res.data)
                 setCartNumber(res.data.cartCount)
       
               })
           }
           fetch()
-    },[user])
+    },[user,token])
 
     return (
         <div className="navbar bg-base-100">

@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 
 const Login = () => {
 
-  const {LogInUser } = useAuth()
+  const {LogInUser,logOut } = useAuth()
   const navigate = useNavigate()
 
 
@@ -30,6 +30,7 @@ const Login = () => {
             navigate('/')
         })
            .catch(error => {
+            logOut()
                // console.error(error)
                toast.error(`${error.message}`)
            })

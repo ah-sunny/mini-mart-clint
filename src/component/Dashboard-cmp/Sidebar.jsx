@@ -12,7 +12,7 @@ const Sidebar = () => {
   const {logOut} = useAuth()
   return (
     <div className="bg-gray-300 border-r-2 border-r-black min-h-screen p-5" >
-    <h1 className="text-3xl font-bold mx-auto text-center my-7 " >Gadget Shop</h1>
+    <h1 className="text-xl lg:text-3xl font-medium lg:font-bold mx-auto text-center my-7 " >Gadget Shop</h1>
     <div>
         <ul className="flex flex-col gap-3 pl-1 font-semibold" >
             <li>
@@ -68,7 +68,7 @@ const Sidebar = () => {
                     <SiHomeadvisor />
                     Home</Link>
             </li>
-            <button className="flex justify-center items-center gap-2 border-2 rounded-md border-black p-1" onClick={()=>logOut()}>Logout</button>
+            <button className="flex justify-center items-center gap-2 border-2 rounded-md border-black p-1" onClick={()=>logOut()}><Link to='/'>Logout</Link></button>
         </ul>
 
 
