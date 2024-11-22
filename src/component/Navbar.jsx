@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaOpencart } from "react-icons/fa";
 import { LiaCartPlusSolid } from "react-icons/lia";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from "../hooks/useAuth";
@@ -80,10 +80,10 @@ export const Navbar = () => {
                     user ?
 
                         <>
-                        <div className="indicator mr-4">
+                        <Link to='/dashboard/cart' className="indicator mr-4">
                         <span className="indicator-item badge badge-sm px-1 badge-secondary">{cartNumber}+</span>
                             <LiaCartPlusSolid className="size-6 mr-1.5" />
-                        </div>
+                        </Link>
                         {/* <div>
                             <LiaCartPlusSolid className="size-8 mr-4" />
                         </div> */}
