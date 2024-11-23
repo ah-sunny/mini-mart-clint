@@ -39,16 +39,12 @@ const Login = () => {
 
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
-    <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="hero bg-base-100 min-h-screen">
+    <div className="hero-content border-2 border-gray-500 w-auto lg:w-[80%] mx-auto my-8 rounded-md flex-col lg:flex-row">
       <div className="text-center lg:text-left">
-        <h1 className="text-5xl font-bold">Login now!</h1>
-        <p className="py-6">
-          Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-          quasi. In deleniti eaque aut repudiandae et a id nisi.
-        </p>
+       <img src="/src/assets/login-1.jpg" alt="login img"  />
       </div>
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <div className="card bg-base-100 w-full max-w-sm shrink-0 ">
       <form className="card-body" onSubmit={handleSubmit(handleLogin)} >
                     <div className="form-control">
                         <label className="label">
@@ -74,7 +70,7 @@ const Login = () => {
                         <GoogleLogIn></GoogleLogIn>
                     </div>
                     <p className="text-sm" >Create new account
-                        <Link to='/register' className="text-blue-900 " > Register</Link>
+                        <Link to='/register' className="text-blue-900 ml-3 " >     Register</Link>
                     </p>
                 </form>
       </div>

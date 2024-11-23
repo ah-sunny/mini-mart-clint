@@ -10,7 +10,7 @@ const DashboardLayout = () => {
                 
                 <Sidebar></Sidebar>
             </div>
-            <div className="col-span-10 p-7" >
+            <div className="col-span-10 p-2 lg:p-7" >
                 <Outlet></Outlet>
             </div>
             

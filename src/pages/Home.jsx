@@ -1,5 +1,8 @@
 import Banner from "../component/Banner"
+import ContactUs from "../component/ContactUs"
+import Faq from "../component/FAQ"
 import Features from "../component/Features"
+import Testimonial from "../component/Testimonial"
 
 export const Home = () => {
   return (
@@ -10,6 +13,15 @@ export const Home = () => {
       </div>
       <div>
         <Features></Features>
+      </div>
+      <div>
+        <Testimonial></Testimonial>
+      </div>
+      <div>
+        <Faq></Faq>
+      </div>
+      <div>
+        <ContactUs></ContactUs>
       </div>
 
     </div>

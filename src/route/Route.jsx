@@ -15,6 +15,9 @@ import { Cart } from "../pages/Dashboard/Cart";
 import { Wishlist } from "../pages/Dashboard/Wishlist";
 import { Products } from "../pages/Products";
 import Register from "../pages/Register";
+import BuyerRoute from "./BuyerRoute";
+import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 
 // const {user} = useAuth()
@@ -53,7 +56,7 @@ export const router = createBrowserRouter([
     },
     {
       path: "/dashboard",
-      element: <DashboardLayout></DashboardLayout>,
+      element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
       children: [
         {
           path: '/dashboard/overview',
@@ -61,24 +64,24 @@ export const router = createBrowserRouter([
         },
         {
           path:'/dashboard/add-product',
-          element: <AddProduct></AddProduct>
+          element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
         },
         {
           path: "/dashboard/my-product",
-          element: <MyProduct></MyProduct>
+          element: <SellerRoute><MyProduct></MyProduct></SellerRoute>
         },
         {
           path: "/dashboard/update-page/:id",
-          element: <UpdateProduct></UpdateProduct>,
+          element: <SellerRoute><UpdateProduct></UpdateProduct></SellerRoute>
          
         },
         {
           path: "/dashboard/wishlist",
-          element: <Wishlist></Wishlist>
+          element: <BuyerRoute><Wishlist></Wishlist></BuyerRoute>
         },
         {
           path: "/dashboard/cart",
-          element: <Cart></Cart>
+          element: <BuyerRoute><Cart></Cart></BuyerRoute>
         },
         {
           path: '/dashboard/all-user',

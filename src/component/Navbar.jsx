@@ -2,22 +2,34 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaOpencart } from "react-icons/fa";
 import { LiaCartPlusSolid } from "react-icons/lia";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import useUserData from "../hooks/useUSerData";
 
 
 export const Navbar = () => {
     const { user, logOut } = useAuth()
-    // const user = useUserData()
+    const navigate = useNavigate()
+    const userD = useUserData()
     const [cartNumber, setCartNumber] = useState(null)
     const token = localStorage.getItem("access-token")
+    const hideButton = userD?.role === 'seller' && userD?.role === 'admin'
 
     const handleSignOut = () => {
         logOut()
             .then(() => {
-                alert("user out done")
+
+                Swal.fire({
+                    position: 'top-right',
+                    icon: 'success',
+                    title: 'You log out.',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                navigate("/")
             })
             .catch(error => {
                 console.error(error)
@@ -26,21 +38,21 @@ export const Navbar = () => {
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         const fetch = async () => {
             axios.get(`http://localhost:4000/cart?email=${user?.email}`, {
                 headers: {
-                  Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
-              })
-              .then(res => {
-                console.log(" receive",res.data)
-                setCartNumber(res.data.cartCount)
-      
-              })
-          }
-          fetch()
-    },[user,token])
+            })
+                .then(res => {
+                    console.log(" receive", res.data)
+                    setCartNumber(res.data.cartCount)
+
+                })
+        }
+        fetch()
+    }, [user, token])
 
     return (
         <div className="navbar bg-base-100">
@@ -69,7 +81,7 @@ export const Navbar = () => {
                         <li><NavLink to="/about" >About Us</NavLink></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"><FaOpencart /> MiniMart</a>
+                <a className="btn btn-ghost text-sm lg:text-xl"><FaOpencart /> MiniMart</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -85,14 +97,14 @@ export const Navbar = () => {
                 {
                     user ?
 
-                        <>
-                        <Link to='/dashboard/cart' className="indicator mr-4">
-                        <span className="indicator-item badge badge-sm px-1 badge-secondary">{cartNumber}+</span>
-                            <LiaCartPlusSolid className="size-6 mr-1.5" />
-                        </Link>
-                        {/* <div>
-                            <LiaCartPlusSolid className="size-8 mr-4" />
-                        </div> */}
+                        <> <button disabled={hideButton} >
+                            <Link to='/dashboard/cart' className="indicator mr-4">
+                                <span className="indicator-item badge badge-sm px-1 badge-secondary">{cartNumber}+</span>
+                                <LiaCartPlusSolid className="size-6 mr-1.5" />
+                            </Link>
+                        </button>
+
+                            
 
                             <div className="dropdown dropdown-end">
                                 <div tabIndex={0} role="button" className=" m-1">
@@ -114,8 +126,8 @@ export const Navbar = () => {
 
                         :
                         <div>
-                            <NavLink to='/Login' > <button className="btn btn-primary btn-outline " >Login</button> </NavLink>
-                            <NavLink to="/register"> <button className="btn btn-primary " >Register</button> </NavLink>
+                            <NavLink to='/Login' > <button className="btn btn-xs lg:btn-sm btn-primary btn-outline " >Login</button> </NavLink>
+                            <NavLink to="/register"> <button className="btn btn-xs lg:btn-sm btn-primary " >Register</button> </NavLink>
                         </div>
                 }
 

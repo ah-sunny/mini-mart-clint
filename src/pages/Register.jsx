@@ -75,21 +75,14 @@ const Register = () => {
 
   }
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero  min-h-screen border-2 border-gray-500 w-auto lg:w-[80%] mx-auto my-8 rounded-md">
       <div className="hero-content flex-col lg:flex-row-reverse bg-no-repeat bg-cover "
-        style={{
-          backgroundImage: "url('/public/Register.jpg')",
-
-        }}
+        
       >
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Register now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-            quasi. In deleniti eaque aut repudiandae et a id nisi.
-          </p>
+          <img src="/src/assets/register.jpg" alt="" className="h-[90%]"/>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 ">
           <form className="card-body" onSubmit={handleSubmit(handleRegister)} >
             {/* email field */}
             <div className="form-control">
@@ -127,7 +120,7 @@ const Register = () => {
 
 
               {/* show password method */}
-              <span className='absolute right-[18%] bottom-[58%] ' onClick={() => setShowPass(!showPass)}> {showPass ? <FaEyeSlash className="size-6"></FaEyeSlash> : <FaEye className="size-6"></FaEye>} </span>
+              <span className='absolute right-[10%] bottom-[66%] ' onClick={() => setShowPass(!showPass)}> {showPass ? <FaEyeSlash className="size-6"></FaEyeSlash> : <FaEye className="size-6"></FaEye>} </span>
 
             </div>
             {/*  confirm password */}
@@ -150,7 +143,7 @@ const Register = () => {
                 <span className="text-red-500 text-xs mt-1" >{errors.confirmPass.message}</span>}
 
               {/* show password method */}
-              <span className='absolute right-[18%] bottom-[48%] ' onClick={() => setShowPass(!showPass)}> {showPass ? <FaEyeSlash className="size-6"></FaEyeSlash> : <FaEye className="size-6"></FaEye>} </span>
+              <span className='absolute right-[10%] bottom-[50%] ' onClick={() => setShowPass(!showPass)}> {showPass ? <FaEyeSlash className="size-6"></FaEyeSlash> : <FaEye className="size-6"></FaEye>} </span>
 
             </div>
 
@@ -173,7 +166,7 @@ const Register = () => {
               <GoogleLogIn></GoogleLogIn>
             </div>
             <p className="text-sm" >Already have an account?
-              <Link to='/login' className="text-blue-900 " >  Login</Link>
+              <Link to='/login' className="text-blue-900 ml-3" >Login</Link>
             </p>
           </form>
         </div>
