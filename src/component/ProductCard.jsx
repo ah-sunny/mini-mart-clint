@@ -11,6 +11,8 @@ const ProductCard = ({ product }) => {
     // const { user } = useAuth()
     const user = useUserData()
     // const [disable , setDisable] = useState(true)
+
+    const disableButton = user?.role == 'seller' || user?.role == 'admin'
     
     const { _id, title, category, price, stock, brand, description } = product;
     // console.log(user)
@@ -90,11 +92,11 @@ const ProductCard = ({ product }) => {
                 </div>
             </div>
             <div className="w-full mt-1  flex rounded-t-2xl ">
-                <button disabled={user?.role == 'seller' ? true : false} onClick={() => handleWishList(_id)} className='btn rounded-none w-1/2 p-3 flex items-center justify-center gap-3 bg-red-500  rounded-bl-md ' >
+                <button disabled={disableButton} onClick={() => handleWishList(_id)} className='btn rounded-none w-1/2 p-3 flex items-center justify-center gap-3 bg-red-500  rounded-bl-md ' >
                     <GiSelfLove className='size-5 text-balance' />
                     <span className='font-bold text-lg '>wishlist</span>
                 </button>
-                <button disabled={user?.role == 'seller' ? true : false}  onClick={() => handleCart(_id)} className=" btn rounded-none flex items-center justify-center gap-3 bg-yellow-400 w-1/2 p-3 rounded-br-md">
+                <button disabled={disableButton}  onClick={() => handleCart(_id)} className=" btn rounded-none flex items-center justify-center gap-3 bg-yellow-400 w-1/2 p-3 rounded-br-md">
                     <LiaCartPlusSolid className='size-6' />
                     Add to Cart
                 </button>

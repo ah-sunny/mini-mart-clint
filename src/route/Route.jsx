@@ -10,6 +10,7 @@ import { Home } from "../pages/Home";
 import Login from "../pages/Login";
 // import { Products } from "../pages/Products";
 import UpdateProduct from "../component/product/UpdateProduct";
+import { AllUsers } from "../pages/Dashboard/AllUsers";
 import { Cart } from "../pages/Dashboard/Cart";
 import { Wishlist } from "../pages/Dashboard/Wishlist";
 import { Products } from "../pages/Products";
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
         {
           path: "/dashboard/cart",
           element: <Cart></Cart>
+        },
+        {
+          path: '/dashboard/all-user',
+          element: <AllUsers></AllUsers>
         }
         
       ]
